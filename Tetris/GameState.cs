@@ -29,7 +29,7 @@ namespace Tetris
 
         private bool BlockFits()
         {
-            foreach (Position p in CurrentBlock.TilePosition())
+            foreach (Position p in CurrentBlock.TilePositions())
             {
                 if (!GameGrid.IsEmpty(p.Row, p.Column))
                 {
