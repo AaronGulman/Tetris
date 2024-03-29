@@ -16,6 +16,4 @@
 
         protected override Position[][] Tiles => tiles;
     }
-    {
-    }
 }

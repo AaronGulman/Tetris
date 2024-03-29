@@ -110,6 +110,5 @@ namespace Tetris
                 PlaceBlock();
             }
         }
-
-        }
+    }
 }
