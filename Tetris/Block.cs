@@ -25,7 +25,7 @@
 
         public void RotateCW()
         {
-            rotationState = (rotationState) + 1 % Tiles.Length;
+            rotationState = (rotationState + 1) % Tiles.Length;
         }
 
         public void RotateCCW()
