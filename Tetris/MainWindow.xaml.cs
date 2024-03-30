@@ -1,5 +1,9 @@
-﻿using System.Security.Claims;
+﻿﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Printing;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -17,8 +21,6 @@ namespace Tetris
     /// </summary>
     public partial class MainWindow : Window
     {
-        public Canvas GameCanvas { get; private set; }
-
         private readonly ImageSource[] tileImages = new ImageSource[] //the order here is not random ,
                                                                       //it matches the block IDs
         {
@@ -49,9 +51,9 @@ namespace Tetris
 
         private GameState gameState = new GameState();
 
-
         public MainWindow()
         {
+            InitializeComponent();
             imageControls = SetupGameCanvas(gameState.GameGrid);
         }
 
@@ -70,7 +72,7 @@ namespace Tetris
                         Height = cellSize
                     };
 
-                    Canvas.SetTop(imageControl, (r - 2) * cellSize);
+                    Canvas.SetTop(imageControl, (r - 2) * cellSize +10);
                     //-2 is to push the top hidden rows up so 
                     //they are not inside the canvas
                     Canvas.SetLeft(imageControl, c * cellSize);
@@ -111,7 +113,10 @@ namespace Tetris
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (gameState.GameOver)
+            {
+                return;
+            }
         }
 
         private void GameCanvas_Loaded(object sender, RoutedEventArgs e)
