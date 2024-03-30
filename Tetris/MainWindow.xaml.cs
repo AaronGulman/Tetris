@@ -110,12 +110,25 @@ namespace Tetris
             NextImage.Source = blockImages[next.Id];
         }
 
+        private void DrawHeldBlock(Block heldblock)
+        {
+            if(heldblock == null)
+            {
+                HoldImage.Source = blockImages[0];
+            }
+            else
+            {
+                HoldImage.Source = blockImages[heldblock.Id];
+            }
+        }
+
         private void Draw(GameState gameState)
         {
             DrawGrid(gameState.GameGrid);
             DrawBlock(gameState.CurrentBlock);
             DrawNextBlock(gameState.BlockQueue);
             ScoreText.Text = $"Score: {gameState.Score}";
+            DrawHeldBlock(gameState.HeldBlock);
         }
 
         private async Task GameLoop()
@@ -159,6 +172,9 @@ namespace Tetris
                     break;
                 case Key.D:
                     gameState.RotateBlockCCW();
+                    break;
+                case Key.C:
+                    gameState.HoldBlock();
                     break;
                 default:
                     return;

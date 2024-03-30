@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.Eventing.Reader;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Tetris
 {
@@ -33,11 +34,18 @@ namespace Tetris
 
         public int Score { get; private set; }
 
+        public Block HeldBlock { get; private set; }
+
+        public bool CanHold { get; private set; }
+
+
+
         public GameState()
         {
             GameGrid = new GameGrid(22, 10);
             BlockQueue = new BlockQueue();
             CurrentBlock = BlockQueue.GetAndUpdate();
+            CanHold = true;
         }
 
         private bool BlockFits()
@@ -52,6 +60,29 @@ namespace Tetris
 
             return true;
         }
+
+
+        public void HoldBlock()
+        {
+            if (!CanHold)
+            {
+                return;
+            }
+            if( HeldBlock == null )
+            {
+                HeldBlock = CurrentBlock;
+                CurrentBlock = BlockQueue.GetAndUpdate();
+            }
+            else
+            {
+                Block tmp = CurrentBlock;
+                CurrentBlock = HeldBlock;
+                HeldBlock = tmp;
+            }
+
+            CanHold = false;
+        }
+
 
         public void RotateBlockCW()
         {
@@ -111,6 +142,7 @@ namespace Tetris
             else
             {
                 CurrentBlock = BlockQueue.GetAndUpdate();
+                CanHold = true;
             }
         }
         public void MoveBlockDown()
