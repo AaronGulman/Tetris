@@ -10,7 +10,6 @@ This project is a C# implementation of the classic Tetris game using WPF (Window
 - [Installation](#installation)
 - [Usage](#usage)
 - [Project Structure](#project-structure)
-- [Classes Description](#classes-description)
 - [Acknowledgements](#acknowledgements)
 - [License](#license)
 
