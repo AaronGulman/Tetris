@@ -79,6 +79,8 @@ Tetris/
 
 This project is inspired by the classic Tetris game. The implementation is a basic version and can be further extended with features like different levels, high scores, and more advanced graphics.
 
+## Not cross-platform . Windows only!
+
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for more details.
